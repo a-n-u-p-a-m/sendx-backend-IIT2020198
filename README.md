@@ -7,6 +7,7 @@ In the sendx_assignment folder:
 1. The project.go contains the Golang code
 2. The project.html file inside the static folder contains the frontend code for a simple web-crawler webpage
 
-To run the code start the Go server and then enter localhost:8080/static/project.html for the website.
-To see the timestamps of first access type localhost:8080/view
-To view the access logs of everytime a webpage is accessed type localhost:8080/accesslogs
+## How to run
+1.To run the code start the Go server and then enter localhost:8080/static/project.html for the website.
+2.To see the timestamps of first access type localhost:8080/view
+3.To view the access logs of everytime a webpage is accessed type localhost:8080/accesslogs
