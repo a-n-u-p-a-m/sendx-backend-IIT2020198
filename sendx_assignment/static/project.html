@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Crawler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #urlInput {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        #payingCustomer {
+            margin: 10px;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f7f7f7;
+        }
+
+        .paying {
+            color: green;
+        }
+
+        .non-paying {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Web Crawler</h1>
+    <input type="text" id="urlInput" placeholder="Enter URL">
+    <label for="payingCustomer">Paying Customer</label>
+    <input type="checkbox" id="payingCustomer">
+    <button onclick="crawl()">Crawl</button>
+    <div id="result"></div>
+
+    <script>
+        function crawl() {
+            const url = document.getElementById('urlInput').value;
+            const isPaying = document.getElementById('payingCustomer').checked;
+
+            // Use fetch to send a request to the server with the URL and customer status
+            fetch(`/crawl?url=${url}&isPaying=${isPaying}`)
+                .then(response => response.text())
+                .then(data => {
+                    const resultElement = document.getElementById('result');
+                    resultElement.innerHTML = data;
+                    if (isPaying) {
+                        resultElement.classList.add('paying');
+                        resultElement.classList.remove('non-paying');
+                    } else {
+                        resultElement.classList.add('non-paying');
+                        resultElement.classList.remove('paying');
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('result').innerHTML = 'Error: ' + error;
+                });
+        }
+    </script>
+</body>
+</html>
